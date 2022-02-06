@@ -3,7 +3,7 @@ import dropbox
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
-access_token = "sl.BBe-KSk-yAeMTaM18-mPA9Az8pKL7E1FEf4i-Kera2Yv_P8K4Xnlt_IqjeN8zSlzRNIidJwoGjQ2qTECVu4H2ufYB5q69ODEC-csN2ZEz2MDBQ5NKrW7wPgigxyFHyukaPDhNv6Gaazq"
+access_token = "sl.BBck8u-y9iPId5YRtt_fG6jnjSPhxA6pgAWZsnTe5FfrDHkysX1fPiT09dH6mCER97q0LnCi3yoAtk2e3wdnbLSiiifjPPNLhEIf9TGva7LP6QLxrI9TPDO7RDaHaQcUPFzvkpO-lZnP"
 
 sw = False 
 
@@ -34,17 +34,34 @@ def dropbox_upload_file(local_path, local_file, dropbox_file_path):
 def dropbox_list_files(path):
     try:
         files = dbx.files_list_folder(path).entries 
-        print('\ncarpeta ' + path + ':')
+        print('\ncarpeta ' + path + ':' + '\n-------------------')
         for file in files:
             print(file.name)
     except Exception as e:
         print('\n' + str(e))
 
+#listar archivos en carpeta '.' 
+con = 0
+arc = []  
+r = 0
+archivos = os.listdir('.')
+for archivo in archivos:
+    arc.append(archivo) 
+    con+=1
+    print( str(con) + ") " + archivo)
+
+while True:
+    print('Ingrese numero: ')
+    r = int(input())
+    if r >= 1 and r<=con:
+        break 
+
 # 
-dropbox_upload_file('.','imagen.png', '/favoritos')
-if (sw):
-    dropbox_list_files('/favoritos')
-else:
-    print('\nNo se pudo Listar los archivos\n')
+if r != 0:
+    dropbox_upload_file('.', arc[r-1], '/favoritos')
+    if (sw):
+        dropbox_list_files('/favoritos')
+    else:
+        print('\nNo se pudo Listar los archivos\n')
 
 print('\n') 
