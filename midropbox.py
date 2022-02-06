@@ -3,12 +3,12 @@ import dropbox
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
-access_token = "sl.BBck8u-y9iPId5YRtt_fG6jnjSPhxA6pgAWZsnTe5FfrDHkysX1fPiT09dH6mCER97q0LnCi3yoAtk2e3wdnbLSiiifjPPNLhEIf9TGva7LP6QLxrI9TPDO7RDaHaQcUPFzvkpO-lZnP"
+access_token = "sl.BBfW--OcIcxoFsn8wgiBuC9fpqBrPY0LR8fXxz6Z7Jj2z-XZ-SF8ILVpUEdc3fcNFgawcY9164H90kleFnEouBpqchL2rGjAfIzIkjQcsKKmSmOMMXsbwmfBzKDx3zWFZ4mVG2cgjbJt"
 
 sw = False 
 
 try:
-    dbx = dropbox.Dropbox(access_token)
+    dbx = dropbox.Dropbox(oauth2_access_token=access_token, oauth2_access_token_expiration='2030-12-30')
     dbx.users_get_current_account()
     # print(dbx.users_get_current_account())
     dropbox_user_name = dbx.users_get_current_account().name.display_name
